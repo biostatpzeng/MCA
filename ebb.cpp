@@ -1,34 +1,4 @@
 // ebb_crossprob_cor.c
-// Ryan Sun, Harvard University
-// July 17, 2016
-
-// This binary calculates an approximation to the p-value of GOF tests.
-
-// Usage is ./ebb_crossprob_cor [NUM_STATS] [BOUNDS_FILE] [CORRELATIONS_FILE]
-// where NUM_STATS is the size of your set, BOUNDS_FILE is the name of the file
-// holding the boundaries (0<=b_1<=...<=b_NUM_STATS) which come from inversion
-// of the GOF statistic, and CORRELATIONS_FILE is the name of the file holding
-// all the NUM_STATS*(NUM_STATS-1)/2 pairwise correlations between the observations
-// in your set.
-// Both BOUNDS_FILE and CORRELATIONS_FILE should be a single column of numbers
-// with no headers/labels/blank spaces/other characters.
-
-// One difference from before is that we calculate the conditional moments upfront in
-// a separate routine.
-// We are also now using the EBB distribution of Prentice (1988) instead of the standard
-// Beta-Binomial.
-
-// The routines below are:
-// (1) avg_cond_covar - Calculate the average conditional covariance between any two indicators
-//  Y_i,Y_j where Y_i=P(|Z_i|>=t_k).
-// (2) match_moments - Given an average conditional covariance and a conditional mean, calculate
-// \lambda and \gamma for the EBB PMF.  Also check to ensure both are inside the allowable parameter space.
-// (3) eval_EBB_PMF - Self-explanatory
-// (4) calc_qka - Called to fill each entry of the d*d matrix leading to final
-// p-value.  Sums over all m>=a in P(S(t_k)=a|S(t_k)=m).
-// (5) calc_allq - Loop through each entry of the d*d matrix until we get the (d,1) element.
-
-// Need this for the boost functions on windows machines
 // [[Rcpp::depends(BH)]]
 #include <iostream>
 #include <cmath>

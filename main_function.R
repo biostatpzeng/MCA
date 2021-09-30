@@ -1,5 +1,9 @@
-  GBM <- function(input.data, ref.data, weight.matrix = NULL, method = "BT", n=NULL)
+GBM <- function(input.data, ref.data, weight.matrix = NULL, method = "BT", n=NULL)
 {
+  pkgs <- list("MASS","mvtnorm","Matrix", "CompQuadForm","Rcpp")
+  checking<-unlist(lapply(pkgs, require, character.only = T))
+  if(any(checking==F))
+    stop("Please install the necessary packages first!")
   input.data$Z = qchisq(input.data$P,df = 1,lower = F)
   Z = input.data$Z
   p = input.data$P
@@ -1582,7 +1586,7 @@ ACATO <- function(p)
 BJ <- function(p, ldmat=NULL) 
 {
   library(Rcpp)
-  sourceCpp("E:/ebb.cpp")
+  sourceCpp("ebb.cpp")
   
   Z <- qchisq(p,df = 1,lower = F)
   # Parse inputs, do some error checking.
@@ -1694,7 +1698,7 @@ GBJ <- function(p, ldmat=NULL)
 HC <- function(p, ldmat=NULL) 
 {
   library(Rcpp)
-  sourceCpp("E:/ebb.cpp")
+  sourceCpp("ebb.cpp")
   
   Z <- qchisq(p,df = 1,lower = F)
   # Parse inputs, do some error checking.

@@ -15,10 +15,10 @@ library(dplyr)
 source("main function.R")
 prepare.GBJ(path = "GBJ_code/")
 
-input.data = data.frame(fread("input.data.txt"))
-ref.data = data.frame(fread("ref.data.txt"))
+INPUT = data.frame(fread("input.data.txt"))
+REF = data.frame(fread("ref.data.txt"))
 
-P.BT = GBM(input.data,ref.data,weight.matrix = NULL, method = "BT")
+P.BT = GBM(input.data=INPUT,ref.data=REF,weight.matrix = NULL, method = "BT")
 ```
 
 ## Cite

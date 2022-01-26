@@ -1,4 +1,4 @@
-GBM <- function(input.data, ref.data, weight.matrix = NULL, method = "BT",lambda = 0.99,
+MCA <- function(input.data, ref.data, weight.matrix = NULL, method = "BT",lambda = 0.99,
                 t = 0.05,k = 0.5,a = 0.0383,p = c(0.1, 0.2, 0.3, 0.4, 1),
                 path = NULL,o = c(1:8, Inf),f = 0.85,n = NULL)
 {

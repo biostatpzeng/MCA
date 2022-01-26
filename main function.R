@@ -3,7 +3,7 @@ MCA <- function(input.data, ref.data, weight.matrix = NULL, method = "BT",lambda
                 path = NULL,o = c(1:8, Inf),f = 0.85,n = NULL)
 {
   pkgs <- list("MASS","mvtnorm","Matrix", "CompQuadForm","Rcpp","corpcor",
-               "mkatr","harmonicmeanp")
+               "mkatr","harmonicmeanp","GBJ")
   checking<-unlist(lapply(pkgs, require, character.only = T))
   if(any(checking==F))
     stop("Please install the necessary packages first!")

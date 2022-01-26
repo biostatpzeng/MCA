@@ -18,7 +18,7 @@ prepare.GBJ(path = "GBJ_code/")
 INPUT = data.frame(fread("input.data.txt"))
 REF = data.frame(fread("ref.data.txt"))
 
-P.BT = GBM(input.data=INPUT,ref.data=REF,weight.matrix = NULL, method = "BT")
+P.BT = MCA(input.data=INPUT,ref.data=REF,weight.matrix = NULL, method = "BT")
 ```
 
 ## Cite

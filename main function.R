@@ -64,7 +64,7 @@ MCA <- function(input.data, ref.data, weight.matrix = NULL, method = "BT",lambda
 
 ########################################################################
 
-TPM <- function (P, trunc = 0.05) # add MCMC
+TPM <- function (P, trunc = 0.05)
 {
   w <- prod(P^(P <= trunc))
   M <- length(P)

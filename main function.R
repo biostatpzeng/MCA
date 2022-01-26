@@ -21,91 +21,46 @@ MCA <- function(input.data, ref.data, weight.matrix = NULL, method = "BT",lambda
   if (!(length(Z) == dim(R)[1] & dim(R)[2] == dim(R)[1])) {
     stop("dimension do not match. Check dimension of Z and R.")
   }
-  sumstat.GBM <- as.function(get(paste(method)))
+  sumstat.MCA <- as.function(get(paste(method)))
   if(method == "TPM"){
     if((t < 0) & (t > 1)) stop("Please input a fixed value t between 0 and 1")
-    return(sumstat.GBM(P,trunc = t))
+    return(sumstat.MCA(P,trunc = t))
   }else if(method %in% c("FCP","Simes")){
-    return(sumstat.GBM(P))
+    return(sumstat.MCA(P))
   }else if(method %in% c("GATES","SimpleM")){
-    return(sumstat.GBM(P,R))
+    return(sumstat.MCA(P,R))
   }else if(method %in% c("RTP","ART")){
     if((k < 0) & (k > 1)) stop("Please input a fixed value k between 0 and 1")
     k = min(k,1)*M
-    return(sumstat.GBM(P,k = k))
+    return(sumstat.MCA(P,k = k))
   }else if(method == "ART.A"){
     if((k < 0) & (k > 1)) stop("Please input a fixed value k between 0 and 1")
     k = min(k,1)*M
-    return(sumstat.GBM(P,W = W,k = k))
+    return(sumstat.MCA(P,W = W,k = k))
   }else if(method == "GM"){
-    return(sumstat.GBM(P,a = a))
+    return(sumstat.MCA(P,a = a))
   }else if(method == "VEGAS"){
-    return(sumstat.GBM(P,R,vegas.pct = p))
+    return(sumstat.MCA(P,R,vegas.pct = p))
   }else if(method == "aSPUs"){
-    return(sumstat.GBM(Z,R,pow = o))
+    return(sumstat.MCA(Z,R,pow = o))
   }else if(method == "PCA"){
     if(is.null(n))  stop("require the sample number n")
     if((f < 0) & (f > 1)) stop("Please input a fixed value fra between 0 and 1")
-    return(sumstat.GBM(Z,R,W = W,fra = f,n=n))
+    return(sumstat.MCA(Z,R,W = W,fra = f,n=n))
   }else if(method %in% c("ACAT","HMP")){
-    return(sumstat.GBM(P,W = W))
+    return(sumstat.MCA(P,W = W))
   }else if(method %in% c("BT","DOT","QT","SKAT","SKATO")){
-    return(sumstat.GBM(Z,R,W = W))
+    return(sumstat.MCA(Z,R,W = W))
   }else if(method %in% c("MLR","FLM")){
-    sumstat.GBM <- as.function(get(paste(method)))
+    sumstat.MCA <- as.function(get(paste(method)))
     if(is.null(n))  stop("require the sample number n")
-    return(sumstat.GBM(Z,W = W,R,n = n))
+    return(sumstat.MCA(Z,W = W,R,n = n))
   }else if(method %in% c("GBJ","BJ","HC","GHC","minP")){
-    return(as.numeric(sumstat.GBM(Z,R)[2]))
+    return(as.numeric(sumstat.MCA(Z,R)[2]))
   }else {
     stop("Please use the right method!")
   }
 }
-
-GBM_simple <- function(P,Z,R,W=NULL, method = "BT",
-                       t = 0.05,k = 0.5,a = 0.0383,p = c(0.1, 0.2, 0.3, 0.4, 1),
-                       path = NULL,o = c(1:8, Inf),f = 0.85,n = NULL){
-  sumstat.GBM <- as.function(get(paste(method)))
-  if(method == "TPM"){
-    if((t < 0) & (t > 1)) stop("Please input a fixed value t between 0 and 1")
-    return(sumstat.GBM(P,trunc = t))
-  }else if(method %in% c("FCP","Simes")){
-    return(sumstat.GBM(P))
-  }else if(method %in% c("GATES","SimpleM")){
-    return(sumstat.GBM(P,R))
-  }else if(method %in% c("RTP","ART")){
-    if((k < 0) & (k > 1)) stop("Please input a fixed value k between 0 and 1")
-    k = min(k,1)*M
-    return(sumstat.GBM(P,k = k))
-  }else if(method == "ART.A"){
-    if((k < 0) & (k > 1)) stop("Please input a fixed value k between 0 and 1")
-    k = min(k,1)*M
-    return(sumstat.GBM(P,W = W,k = k))
-  }else if(method == "GM"){
-    return(sumstat.GBM(P,a = a))
-  }else if(method == "VEGAS"){
-    return(sumstat.GBM(P,R,vegas.pct = p))
-  }else if(method == "aSPUs"){
-    return(sumstat.GBM(Z,R,pow = o))
-  }else if(method == "PCA"){
-    if(is.null(n))  stop("require the sample number n")
-    if((f < 0) & (f > 1)) stop("Please input a fixed value fra between 0 and 1")
-    return(sumstat.GBM(Z,R,W = W,fra = f,n=n))
-  }else if(method %in% c("ACAT","HMP")){
-    return(sumstat.GBM(P,W = W))
-  }else if(method %in% c("BT","DOT","QT","SKAT","SKATO")){
-    return(sumstat.GBM(Z,R,W = W))
-  }else if(method %in% c("MLR","FLM")){
-    sumstat.GBM <- as.function(get(paste(method)))
-    if(is.null(n))  stop("require the sample number n")
-    return(sumstat.GBM(Z,W = W,R,n = n))
-  }else if(method %in% c("GBJ","BJ","HC","GHC","minP")){
-    return(as.numeric(sumstat.GBM(Z,R)[2]))
-  }else {
-    stop("Please use the right method!")
-  }
-}
-
 
 ########################################################################
 

@@ -20,7 +20,7 @@ P.BT = MCA(input.data=INPUT,ref.data=REF,weight.matrix = NULL, method = "BT")
 ```
 
 ## Cite
-Zhonghe Shao, Ting Wang, Shuiping Huang and [Ping Zeng](https://github.com/biostatpzeng) (2021). A comprehensive comparison of multilocus association methods with summary statistics in genome-wide association studies.
+Zhonghe Shao<sup>$</sup>, Ting Wang<sup>$</sup>, Shuiping Huang and [Ping Zeng](https://github.com/biostatpzeng)<sup>#</sup>  (2022). A comprehensive comparison of multilocus association methods with summary statistics in genome-wide association studies.
 
 ## Contact
 We are very grateful to any questions, comments, or bugs reports; and please contact [Ping Zeng](https://github.com/biostatpzeng) via zpstat@xzhmu.edu.cn.
